@@ -1,0 +1,79 @@
+# -*- Mode: python; py-indent-offset: 4; indent-tabs-mode: nil; coding: utf-8; -*-
+
+# def options(opt):
+#     pass
+
+# def configure(conf):
+#     conf.check_nonfatal(header_name='stdint.h', define_name='HAVE_STDINT_H')
+
+def build(bld):
+    module = bld.create_ns3_module('mod', ['core'])
+    module.source = [
+        #'helper/mod-helper.cc',
+        'model/Bloomfilter.cc',      
+	'model/ccn-packets.cc',
+	'model/CcnModule.cc',
+	'model/CCN_Name.cc',
+	'model/Initializer.cc',
+	'model/md5.cc',		
+	'model/Parser.cc',
+	'model/PIT.cc',
+	'model/PTuple.cc',
+	'model/Receiver.cc',
+	#'model/Receivers.cc',
+	'model/ResultPrinter.cc',
+	'model/Sender.cc',
+	'model/sha1.cc',
+	#'model/Text.cc',
+	'model/Trie.cc',
+	'model/local_app.cc',
+	'model/TrieNode.cc',
+	'model/experiment_globals.cc',
+	'model/BloomFilters.cc',
+	'model/Graph.cc',
+        'model/PIT_Key.cc',
+	'helper/BootstrappingHelper.cc'
+        ]
+
+    module_test = bld.create_ns3_module_test_library('mod')
+    module_test.source = [
+        'test/mod-test-suite.cc',
+        ]
+
+    headers = bld(features='ns3header')
+    headers.module = 'mod'
+    headers.source = [
+    #'model/mod.h',
+    #'helper/mod-helper.h',
+    'model/utils.h',
+    'model/Bloomfilter.h',        
+	'model/ccn-packets.h',
+	'model/CcnModule.h',
+	'model/CCN_Name.h',		
+	'model/Initializer.h',
+	'model/md5.h',
+	#'model/mod.h',
+	'model/Parser.h',
+	'model/PIT.h',
+	'model/PTuple.h',
+	'model/Receiver.h',
+	#'model/Receivers.h',
+	'model/ResultPrinter.h',
+	'model/Sender.h',
+	'model/sha1.h',
+	#'model/Text.h',
+	'model/Trie.h',
+	'model/local_app.h',
+	'model/TrieNode.h',
+	'model/experiment_globals.h',
+	'model/BloomFilters.h',
+	'model/Graph.h',
+        'model/PIT_Key.h',
+	'helper/BootstrappingHelper.h'
+        ]
+
+    if bld.env.ENABLE_EXAMPLES:
+        bld.recurse('examples')
+
+    # bld.ns3_python_bindings()
+
