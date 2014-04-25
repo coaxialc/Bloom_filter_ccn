@@ -42,7 +42,8 @@ class BootstrappingHelper : public Object
 	void PITCheck(int ,int ,set<uint32_t>,Graph,uint32_t);
 	unsigned gs;
 	uint32_t interestsNum;
-	string seed;
+	uint32_t seed;
+	string seedString;
 	string output;
 	void specificData();
 	std::string filename;
