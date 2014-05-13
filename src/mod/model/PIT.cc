@@ -23,7 +23,7 @@ void PIT::DoDispose(void) {
 
 	if(COUNT_PITS==0)
 	{
-		std::cout<<"PITS over."<<std::endl;
+		//std::cout<<"PITS over."<<std::endl;
 	}
 }
 

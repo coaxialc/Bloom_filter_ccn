@@ -35,7 +35,7 @@ void TrieNode::DoDispose(void){
 
 	if(COUNT_TRIENODES==0)
 	{
-		std::cout<<"TRIENODES over."<<std::endl;
+		//std::cout<<"TRIENODES over."<<std::endl;
 	}
 }
 

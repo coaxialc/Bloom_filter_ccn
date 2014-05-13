@@ -82,7 +82,7 @@ class CcnModule;
 				}
 			}
 			
-			std::cout << "BFS visited " << visited.size() << " nodes\n";
+	//		std::cout << "BFS visited " << visited.size() << " nodes\n";
 		}
 
 		Ptr<CcnModule> Initializer::firstUnvisitedChild(Ptr<CcnModule> ccn)

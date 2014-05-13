@@ -20,16 +20,18 @@ while true; do
 
 		  #If the group size we asked to be used could not be used because there were not
 		  #as many nodes with degree 1 then c++ returned 1 and its time
-		  #to end the application. 
+		  #to end the application.
+		  
 		  if [ $? = 1 ]; then
-		  	break
+		  #	break
+			exit 0
 		  fi	  
 	done
 
 	#To end the application we have to break the outer loop too.
-	if [ $? = 1 ]; then
-		break
-	fi
+	#if [ $? = 1 ]; then
+	#	break
+	#fi
 
 	group_size=$[group_size+1]
         seed=$[seed+1]

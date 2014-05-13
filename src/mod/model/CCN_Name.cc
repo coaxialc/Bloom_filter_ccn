@@ -75,7 +75,7 @@ void CCN_Name::DoDispose(void) {
 
 	if(CCN_NAMES==0)
 	{
-		std::cout<<"NAMES over."<<std::endl;
+		//std::cout<<"NAMES over."<<std::endl;
 	}
 }
 

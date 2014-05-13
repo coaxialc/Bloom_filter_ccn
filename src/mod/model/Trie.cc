@@ -28,7 +28,7 @@ void Trie::DoDispose(void){
 
 	if(COUNT_TRIES==0)
 	{
-		std::cout<<"COUNT_TRIES over."<<std::endl;
+	//	std::cout<<"COUNT_TRIES over."<<std::endl;
 	}
 }
 

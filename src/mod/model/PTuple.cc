@@ -87,7 +87,7 @@ void PTuple::DoDispose(void) {
 
 	if(COUNT_TUPLES==0)
 	{
-		std::cout<<"TUPLES over."<<std::endl;
+		//std::cout<<"TUPLES over."<<std::endl;
 	}
 }
 

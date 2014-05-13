@@ -36,7 +36,7 @@ void Sender::DoDispose(void){
 
 	if(COUNT_SENDERS==0)
 	{
-		std::cout<<"SENDERS over."<<std::endl;
+		//std::cout<<"SENDERS over."<<std::endl;
 	}
 }
 

@@ -354,10 +354,11 @@ void CcnModule::doSendInterest(Ptr<CCN_Name> name, Ptr<LocalApp> localApp) {
 int CcnModule::decideTtl() {
 	if (switchh == 0) {
 		uint32_t d=ExperimentGlobals::RANDOM_VAR->GetInteger(1,ExperimentGlobals::D);
+		//std::cout<<"random ttl: "<<d<<std::endl;
 		return d;
 	} else {
 		//otan theloyme panta megisto hc prepei par ola auta na kanoune ena axristo get gia
-		//na min allaksei i aoloytheia ton random arithmon mas kai na synexisoun
+		//na min allaksei i akoloytheia ton random arithmon mas kai na synexisoun
 		//na epilegontai oi idio komboi (ektos an de to theloyme auto)
 		ExperimentGlobals::RANDOM_VAR->GetInteger(1,ExperimentGlobals::D);
 		return ExperimentGlobals::D;

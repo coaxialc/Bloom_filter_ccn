@@ -16,7 +16,7 @@ using namespace ns3;
 
 BootstrappingHelper::BootstrappingHelper(string filename,string output,int gsize,uint32_t interestsNum,int switchh,uint32_t seed)
 {
-	std::cout<<"Constructing BootstrappingHelper"<<std::endl;
+	//std::cout<<"Constructing BootstrappingHelper"<<std::endl;
 	this->seed=seed;
 	this->filename=filename;
 	this->interestsNum=interestsNum;
@@ -29,7 +29,7 @@ BootstrappingHelper::BootstrappingHelper(string filename,string output,int gsize
 
 BootstrappingHelper::~BootstrappingHelper()
 {
-	std::cout<<"Destructing BootstrappingHelper"<<std::endl;
+	//std::cout<<"Destructing BootstrappingHelper"<<std::endl;
 	p=0;
 	vector<Ptr<CcnModule> >::iterator iter;
 	for (iter=module.begin(); iter!=module.end(); iter++ )
@@ -100,7 +100,7 @@ void BootstrappingHelper::parseTopology()
 		}
 	}
 
-	std::cout<<"Module vector has size: "<<module.size()<<std::endl;
+	//std::cout<<"Module vector has size: "<<module.size()<<std::endl;
 	//std::cout<<"According to the maps:"<<std::endl;
 	
 	for(uint32_t i=0;i<module.size();i++)
@@ -146,24 +146,24 @@ Ptr<NetDevice> BootstrappingHelper::ndfinder(Ptr<Node> n1,Ptr<Node> n2)//epistre
 
 void BootstrappingHelper::startExperiment()
 {
-	std::cout<<"startExperiment"<<std::endl;
+	//std::cout<<"startExperiment"<<std::endl;
 
 	Graph topology=p->getGraph();
 
 	set<uint32_t> d1 = topology.getNodesWithDegree(1);
 
-	std::cout<<"degree 1 exoun : "<<d1.size()<<std::endl;
+	//std::cout<<"degree 1 exoun : "<<d1.size()<<std::endl;
 
 	if(this->gs>d1.size()-1)
 	{
 		exit(EXIT_FAILURE);
 	}
 
-	{
 
-		std::cout<<"******************************************************"<<std::endl;
-		std::cout<<"                  Group size: "<<gs<<std::endl;
-		std::cout<<"******************************************************"<<std::endl<<std::endl<<std::endl;
+
+		//std::cout<<"******************************************************"<<std::endl;
+		std::cout<<"Group size: "<<gs<<std::endl;
+		//std::cout<<"******************************************************"<<std::endl<<std::endl<<std::endl;
 
 		for(unsigned c=0;c<20;c++)
 		{
@@ -176,11 +176,19 @@ void BootstrappingHelper::startExperiment()
 
 			set <uint32_t> group=select(d1,gs);
 			uint32_t dataOwner=selectOwner(d1,group);
-			std::cout<<"Module vector size "<<module.size()<<std::endl;
+			//std::cout<<"Module vector size "<<module.size()<<std::endl;
 			//set owner app and data object
 			//----------------------------------------------------
 
-			std::cout<<"Data owner is "<<dataOwner<<" --- ns3 id of node: "<<module.at( nodeToModule.find( dataOwner )->second)->getNodeId()<<std::endl;
+			//std::cout<<"Data owner is "<<dataOwner<<" --- ns3 id of node: "<<module.at( nodeToModule.find( dataOwner )->second)->getNodeId()<<std::endl;
+			//std::cout<<"Group is:"<<std::endl;
+
+			//set<uint32_t>::iterator iter;
+
+			//for (iter=group.begin(); iter!=group.end(); iter++ )
+			//{
+			//	std::cout<<*iter<<std::endl;
+			//}
 
 			//bazoume sender sto module poy exei to kombo 106 ,oxi sto 106o module (to opoio den yparxei ypoxreotika)
 			Ptr<Sender> sa1=CreateObject<Sender>( module.at( nodeToModule.find( dataOwner )->second )  , 60);
@@ -280,7 +288,7 @@ void BootstrappingHelper::startExperiment()
 			stringstream st2;
 			st2 << ExperimentGlobals::D;
 
-			file << "experiment "<<c<<" groupsize "<<gs<<" D "<<st2.str()<<" participants ["<<module.at(nodeToModule.find( dataOwner )->second)->getNodeId()<<",";  //prota emfanizetai i pigi
+			file << "D "<<st2.str()<<" groupsize "<<gs<<" experiment "<<c<<" participants ["<<module.at(nodeToModule.find( dataOwner )->second)->getNodeId()<<",";  //prota emfanizetai i pigi
 
 			for(unsigned i=0;i<gs;i++)
 			{
@@ -309,7 +317,7 @@ void BootstrappingHelper::startExperiment()
 			//----------------------------------------------------
 
 			Simulator::Stop();
-		}
+
 	}
 }
 
@@ -346,6 +354,7 @@ uint32_t BootstrappingHelper::selectOwner(set <uint32_t> d1,set <uint32_t> group
 	}
 
 	int pos=ExperimentGlobals::RANDOM_VAR->GetInteger(0,d.size()-1);
+	//std::cout<<"random: "<<pos<<std::endl;
 
 	set<uint32_t>::const_iterator it(d.begin());
     advance(it,pos);
@@ -368,7 +377,7 @@ void BootstrappingHelper::PITCheck(int gs,int exp,set<uint32_t> group,Graph topo
 
 	for(unsigned i=0;i<module.size();i++)
 	{
-		if(module.at(i)->getNodeId() != owner )
+		if(module.at(i)->getNodeId() != module.at(nodeToModule.find( owner )->second)->getNodeId() )
 		{
 			stringstream st;
 			st << gs;
@@ -381,7 +390,7 @@ void BootstrappingHelper::PITCheck(int gs,int exp,set<uint32_t> group,Graph topo
 
 			ofstream file;
 
-			string secondPartPath="BF/pit_stats/gs-"+st.str()+"-experiment-"+st2.str()+"-D-"+st3.str()+"-group_nodes-"+group_nodes+"-seed-"+seedString+".txt";
+			string secondPartPath="BF/pit_stats/D-"+st3.str()+"-gs-"+st.str()+"-experiment-"+st2.str()+"-group_nodes-"+group_nodes+"-seed-"+seedString+".txt";
 			string tempPath=output+secondPartPath;
 			const char* tempPath2=tempPath.c_str();
 
@@ -389,7 +398,7 @@ void BootstrappingHelper::PITCheck(int gs,int exp,set<uint32_t> group,Graph topo
 
 			file<<"router "<<module.at(i)->getNodeId()<<" pit_entries "<<module.at(i)->getPIT()->getSize();
 
-			if(topology.isItCoreNode(module.at(i)->getNodeId()))
+			if(topology.isItCoreNode(module.at(i)->getNodeId()+1))//+1 because the implementation of our graph used to calculate the degree here ,counts from 1
 			{
 				file<<" core";
 			}

@@ -12,11 +12,11 @@ ResultPrinter::ResultPrinter(vector<Ptr<CcnModule> >& module, uint32_t gs, uint3
 {
 	this->module = module;
 
-	std::cout << "-----------------Interest and data count-----------------"	<< std::endl;
+	//std::cout << "-----------------Interest and data count-----------------"	<< std::endl;
 
-	std::cout << CcnModule::RX_INTERESTS << " interests appeared." << std::endl	<< CcnModule::RX_DATA << " data appeared." << std::endl;
+	//std::cout << CcnModule::RX_INTERESTS << " interests appeared." << std::endl	<< CcnModule::RX_DATA << " data appeared." << std::endl;
 
-	std::cout << "-----------------Interest and data count-----------------"	<< std::endl;
+	//std::cout << "-----------------Interest and data count-----------------"	<< std::endl;
 
 	for (uint32_t i = 0; i < module.size(); i++)
 	{
@@ -33,7 +33,7 @@ ResultPrinter::ResultPrinter(vector<Ptr<CcnModule> >& module, uint32_t gs, uint3
 		file.close();
 	}
 
-	for (uint32_t i = 0; i < receiver.size(); i++)
+	/*for (uint32_t i = 0; i < receiver.size(); i++)
 	{
 
 		//std::cout<<"receiver found"<<std::endl;
@@ -43,9 +43,9 @@ ResultPrinter::ResultPrinter(vector<Ptr<CcnModule> >& module, uint32_t gs, uint3
 		}
 		std::cout << "Receiver got " << receiver.at(i)->getReturned() << ".Asked for " << receiver.at(i)->getAskedFor() << std::endl;
 
-	}
+	}*/
 
-	std::cout << "Sender got " << s->getInterests() << " interests." << std::endl;
+	//std::cout << "Sender got " << s->getInterests() << " interests." << std::endl;
 }
 
 ResultPrinter::~ResultPrinter() {

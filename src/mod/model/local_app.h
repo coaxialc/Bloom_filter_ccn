@@ -20,7 +20,7 @@ public:
 
 			if(COUNT_APPS==0)
 			{
-				std::cout<<"APPS over."<<std::endl;
+				//std::cout<<"APPS over."<<std::endl;
 			}
 		}
 

@@ -46,7 +46,7 @@ void Receiver::DoDispose(void){
 
 	if(COUNT_RECEIVERS==0)
 	{
-		std::cout<<"RECEIVERS over."<<std::endl;
+		//std::cout<<"RECEIVERS over."<<std::endl;
 	}
 }
 
